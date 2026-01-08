@@ -1,9 +1,12 @@
 package Vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class CrearUsuario extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearUsuario.class.getName());
+    private ArrayList<String> medicacion = new ArrayList<>();
+    private ArrayList<String> descripcion = new ArrayList<>();
     private Login login;
     
     Color azul = new Color(41, 51, 92);
@@ -17,6 +20,9 @@ public class CrearUsuario extends javax.swing.JFrame {
         Btn_Tratamientos.setFocusPainted(false);
         Btn_Tratamientos.setBorderPainted(false);
         Btn_Tratamientos.setOpaque(true);
+        Btn_OtroTratamiento.setFocusPainted(false);
+        Btn_OtroTratamiento.setBorderPainted(false);
+        Btn_OtroTratamiento.setOpaque(true);
     }
     
     public void setLogin(Login login) {
@@ -27,6 +33,18 @@ public class CrearUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Dlg_Tratamientos = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        Lbl_VolverTratamientos = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        Txt_TratamientosMedicacion = new javax.swing.JTextField();
+        Txt_TratamientosDescripcion = new javax.swing.JTextField();
+        Btn_OtroTratamiento = new javax.swing.JButton();
+        Btn_GuardarTratamientos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +79,168 @@ public class CrearUsuario extends javax.swing.JFrame {
         Txt_RespRecuperacion = new javax.swing.JTextField();
         Btn_Tratamientos = new javax.swing.JButton();
         Btn_Guardar = new javax.swing.JButton();
+
+        Dlg_Tratamientos.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        Dlg_Tratamientos.setTitle("Tratamientos");
+        Dlg_Tratamientos.setModal(true);
+        Dlg_Tratamientos.setResizable(false);
+
+        jPanel9.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel9.setPreferredSize(new java.awt.Dimension(400, 350));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Lbl_VolverTratamientos.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Lbl_VolverTratamientos.setForeground(new java.awt.Color(41, 51, 92));
+        Lbl_VolverTratamientos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Lbl_VolverTratamientos.setText("VOLVER");
+        Lbl_VolverTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Lbl_VolverTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Lbl_VolverTratamientosMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Lbl_VolverTratamientos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Lbl_VolverTratamientos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 400, 40));
+
+        jPanel11.setBackground(new java.awt.Color(41, 51, 92));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 310));
+
+        jPanel12.setBackground(new java.awt.Color(177, 157, 104));
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 370, 30));
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
+
+        jLabel6.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 51, 92));
+        jLabel6.setText("Tratamientos");
+
+        Txt_TratamientosMedicacion.setBackground(new java.awt.Color(250, 250, 250));
+        Txt_TratamientosMedicacion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        Txt_TratamientosMedicacion.setForeground(new java.awt.Color(156, 156, 156));
+        Txt_TratamientosMedicacion.setText("Ingrese la medicación");
+        Txt_TratamientosMedicacion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        Txt_TratamientosMedicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Txt_TratamientosMedicacionMousePressed(evt);
+            }
+        });
+
+        Txt_TratamientosDescripcion.setBackground(new java.awt.Color(250, 250, 250));
+        Txt_TratamientosDescripcion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        Txt_TratamientosDescripcion.setForeground(new java.awt.Color(156, 156, 156));
+        Txt_TratamientosDescripcion.setText("Ingrese una descripción");
+        Txt_TratamientosDescripcion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        Txt_TratamientosDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Txt_TratamientosDescripcionMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(Txt_TratamientosMedicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_TratamientosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Txt_TratamientosMedicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Txt_TratamientosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 210, 130));
+
+        Btn_OtroTratamiento.setBackground(new java.awt.Color(41, 51, 92));
+        Btn_OtroTratamiento.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Btn_OtroTratamiento.setForeground(new java.awt.Color(250, 250, 250));
+        Btn_OtroTratamiento.setText("OTRO");
+        Btn_OtroTratamiento.setBorder(null);
+        Btn_OtroTratamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_OtroTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_OtroTratamientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_OtroTratamientoMouseExited(evt);
+            }
+        });
+        Btn_OtroTratamiento.addActionListener(this::Btn_OtroTratamientoActionPerformed);
+        jPanel9.add(Btn_OtroTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 100, 40));
+
+        Btn_GuardarTratamientos.setBackground(new java.awt.Color(41, 51, 92));
+        Btn_GuardarTratamientos.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Btn_GuardarTratamientos.setForeground(new java.awt.Color(250, 250, 250));
+        Btn_GuardarTratamientos.setText("GUARDAR");
+        Btn_GuardarTratamientos.setBorder(null);
+        Btn_GuardarTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_GuardarTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_GuardarTratamientosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_GuardarTratamientosMouseExited(evt);
+            }
+        });
+        Btn_GuardarTratamientos.addActionListener(this::Btn_GuardarTratamientosActionPerformed);
+        jPanel9.add(Btn_GuardarTratamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 110, 40));
+
+        javax.swing.GroupLayout Dlg_TratamientosLayout = new javax.swing.GroupLayout(Dlg_Tratamientos.getContentPane());
+        Dlg_Tratamientos.getContentPane().setLayout(Dlg_TratamientosLayout);
+        Dlg_TratamientosLayout.setHorizontalGroup(
+            Dlg_TratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        Dlg_TratamientosLayout.setVerticalGroup(
+            Dlg_TratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Usuario");
@@ -225,7 +405,6 @@ public class CrearUsuario extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Txt_Ocupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
@@ -239,8 +418,11 @@ public class CrearUsuario extends javax.swing.JFrame {
                                     .addComponent(Txt_Escolaridad, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Txt_ApePaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Txt_ApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(10, 10, 10))
+                                .addComponent(Txt_ApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(10, 10, 10))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,13 +817,63 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_Txt_RespRecuperacionMousePressed
 
     private void Btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_TratamientosActionPerformed
-        
+        Dlg_Tratamientos.pack();
+        Dlg_Tratamientos.setLocationRelativeTo(this);
+        Dlg_Tratamientos.setVisible(true);
     }//GEN-LAST:event_Btn_TratamientosActionPerformed
+
+    private void Lbl_VolverTratamientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lbl_VolverTratamientosMouseClicked
+        Dlg_Tratamientos.dispose();
+    }//GEN-LAST:event_Lbl_VolverTratamientosMouseClicked
+
+    private void Txt_TratamientosMedicacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_TratamientosMedicacionMousePressed
+        Txt_TratamientosMedicacion.setText("");
+    }//GEN-LAST:event_Txt_TratamientosMedicacionMousePressed
+
+    private void Txt_TratamientosDescripcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_TratamientosDescripcionMousePressed
+        Txt_TratamientosDescripcion.setText("");
+    }//GEN-LAST:event_Txt_TratamientosDescripcionMousePressed
+
+    private void Btn_OtroTratamientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_OtroTratamientoMouseEntered
+        Btn_OtroTratamiento.setBackground(hover);
+    }//GEN-LAST:event_Btn_OtroTratamientoMouseEntered
+
+    private void Btn_OtroTratamientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_OtroTratamientoMouseExited
+        Btn_OtroTratamiento.setBackground(azul);
+    }//GEN-LAST:event_Btn_OtroTratamientoMouseExited
+
+    private void Btn_GuardarTratamientosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_GuardarTratamientosMouseEntered
+        Btn_GuardarTratamientos.setBackground(hover);
+    }//GEN-LAST:event_Btn_GuardarTratamientosMouseEntered
+
+    private void Btn_GuardarTratamientosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_GuardarTratamientosMouseExited
+        Btn_GuardarTratamientos.setBackground(azul);
+    }//GEN-LAST:event_Btn_GuardarTratamientosMouseExited
+
+    private void Btn_OtroTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_OtroTratamientoActionPerformed
+        medicacion.add(Txt_TratamientosMedicacion.getText());
+        descripcion.add(Txt_TratamientosDescripcion.getText());
+        Txt_TratamientosMedicacion.setText("Ingrese la medicación");
+        Txt_TratamientosDescripcion.setText("Ingrese una descripción");
+    }//GEN-LAST:event_Btn_OtroTratamientoActionPerformed
+
+    private void Btn_GuardarTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarTratamientosActionPerformed
+        if(!(Txt_TratamientosMedicacion.getText().equals("Ingrese la medicación")) && !(Txt_TratamientosDescripcion.getText().equals("Ingrese una descripción"))) {
+            medicacion.add(Txt_TratamientosMedicacion.getText());
+            descripcion.add(Txt_TratamientosDescripcion.getText());
+        }
+                
+        Dlg_Tratamientos.dispose();
+    }//GEN-LAST:event_Btn_GuardarTratamientosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;
+    private javax.swing.JButton Btn_GuardarTratamientos;
+    private javax.swing.JButton Btn_OtroTratamiento;
     private javax.swing.JButton Btn_Tratamientos;
+    private javax.swing.JDialog Dlg_Tratamientos;
     private javax.swing.JLabel Lbl_Volver;
+    private javax.swing.JLabel Lbl_VolverTratamientos;
     private javax.swing.JTextField Txt_Alergias;
     private javax.swing.JTextField Txt_AntecedentesMedicos;
     private javax.swing.JTextField Txt_ApeMaterno;
@@ -659,13 +891,20 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField Txt_PregRecuperacion;
     private javax.swing.JTextField Txt_RespRecuperacion;
     private javax.swing.JTextField Txt_Telefono;
+    private javax.swing.JTextField Txt_TratamientosDescripcion;
+    private javax.swing.JTextField Txt_TratamientosMedicacion;
     private javax.swing.JTextField Txt_Usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -673,5 +912,6 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
 }

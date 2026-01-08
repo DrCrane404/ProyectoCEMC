@@ -1,6 +1,8 @@
 package Vista;
 
+import Modelo.Usuario;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class IniciarSesion extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(IniciarSesion.class.getName());
@@ -153,6 +155,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 Btn_SesionMouseExited(evt);
             }
         });
+        Btn_Sesion.addActionListener(this::Btn_SesionActionPerformed);
         jPanel1.add(Btn_Sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, 40));
 
         Txt_Contrasena.setBackground(new java.awt.Color(250, 250, 250));
@@ -204,6 +207,38 @@ public class IniciarSesion extends javax.swing.JFrame {
             Txt_Contrasena.setText("");
         }
     }//GEN-LAST:event_Txt_ContrasenaMousePressed
+
+    private void Btn_SesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SesionActionPerformed
+        try {
+            if(!(Txt_Usuario.getText().isEmpty()) && !(String.valueOf(Txt_Contrasena.getPassword()).isEmpty())) {
+                Usuario usuario = new Usuario();
+                usuario.setUsuario(String.valueOf(Txt_Usuario.getText()));
+                boolean resultado = usuario.Buscar();
+                int intentos = 0;
+                
+                if(resultado==true) {
+                    if(String.valueOf(Txt_Contrasena.getPassword()).equals(usuario.getContrasena())) {
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        this.dispose();
+                    }else {
+                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta.");
+                        
+                        intentos++;
+                        usuario.setIntentos_fallidos(intentos);
+                        
+                        // Lógica para intentos fallidos
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(this, "No se encontro el usuario.");
+                }
+            }else {
+                JOptionPane.showMessageDialog(this, "Faltan datos por ingresar.");
+            }
+        }catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+    }//GEN-LAST:event_Btn_SesionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Sesion;
