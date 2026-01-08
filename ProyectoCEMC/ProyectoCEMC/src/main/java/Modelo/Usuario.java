@@ -4,7 +4,7 @@ import java.time.*;
 import java.sql.*;
 
 public class Usuario {
-    
+
     // Atributos de clase Usuario
     private int idusuario;
     private String nombre;
@@ -23,10 +23,12 @@ public class Usuario {
     private LocalDateTime ultimo_acceso;
     private int intentos_fallidos;
 
-    //Constructores
-    public Usuario() {}
+    // Constructores
+    public Usuario() {
+    }
 
-    public Usuario(String nombre, String ap_paterno, String ap_materno, String correo, String telefono, String direccion, String usuario, String contrasena) {
+    public Usuario(String nombre, String ap_paterno, String ap_materno, String correo, String telefono,
+            String direccion, String usuario, String contrasena) {
         this.nombre = nombre;
         this.ap_paterno = ap_paterno;
         this.ap_materno = ap_materno;
@@ -36,8 +38,8 @@ public class Usuario {
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
-    
-    //Getters y setters
+
+    // Getters y setters
     public int getIdusuario() {
         return idusuario;
     }
@@ -165,11 +167,13 @@ public class Usuario {
     public void setIntentos_fallidos(int intentos_fallidos) {
         this.intentos_fallidos = intentos_fallidos;
     }
-    
+
     public void Guardar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
-        PreparedStatement Sen = CON.prepareStatement("INSERT INTO usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement Sen = CON.prepareStatement(
+                "INSERT INTO usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS);
+
         Sen.setInt(1, idusuario);
         Sen.setString(2, nombre);
         Sen.setString(3, ap_paterno);
@@ -186,21 +190,26 @@ public class Usuario {
         Sen.setDate(14, Date.valueOf(fecha_registro));
         Sen.setTimestamp(15, Timestamp.valueOf(ultimo_acceso));
         Sen.setInt(16, intentos_fallidos);
-        
+
         Sen.executeUpdate();
-        
-        //Sen.close();
-        //CON.close();
+
+        ResultSet rs = Sen.getGeneratedKeys();
+        if (rs.next()) {
+            this.idusuario = rs.getInt(1);
+        }
+
+        // Sen.close();
+        // CON.close();
     }
-    
+
     public boolean Buscar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement SQL = CON.prepareStatement("SELECT * FROM usuario WHERE usuario = ?");
-        
+
         SQL.setString(1, usuario);
         ResultSet RS = SQL.executeQuery();
-        
-        if(RS.next()) {
+
+        if (RS.next()) {
             idusuario = RS.getInt("idusuario");
             nombre = RS.getString("nombre");
             ap_paterno = RS.getString("ap_paterno");
@@ -219,16 +228,17 @@ public class Usuario {
             intentos_fallidos = RS.getInt("intentos_fallidos");
 
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-    
+
     public void Actualizar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
-        PreparedStatement Sen = CON.prepareStatement("UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, correo = ?, telefono = ?, direccion = ?, contrasena = ?, estatus = ?, WHERE usuario = ?");
-        
-        Sen.setString(1,nombre);
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement Sen = CON.prepareStatement(
+                "UPDATE usuario SET nombre = ?, ap_paterno = ?, ap_materno = ?, correo = ?, telefono = ?, direccion = ?, contrasena = ?, estatus = ?, WHERE usuario = ?");
+
+        Sen.setString(1, nombre);
         Sen.setString(2, ap_paterno);
         Sen.setString(3, ap_materno);
         Sen.setString(4, correo);
@@ -236,23 +246,23 @@ public class Usuario {
         Sen.setString(6, direccion);
         Sen.setString(7, usuario);
         Sen.setString(8, estatus);
-        
+
         Sen.executeUpdate();
     }
-    
+
     public void Borrar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("DELETE FROM usuario WHERE usuario = ?");
-        
+
         Sen.setString(1, usuario);
         Sen.executeUpdate();
     }
-    
-    public ResultSet Mostrar() throws SQLException{
-       Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
-       PreparedStatement SQL = CON.prepareStatement("SELECT * FROM usuario");
-       
-       ResultSet Res = SQL.executeQuery();
-       return Res;
+
+    public ResultSet Mostrar() throws SQLException {
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM usuario");
+
+        ResultSet Res = SQL.executeQuery();
+        return Res;
     }
 }

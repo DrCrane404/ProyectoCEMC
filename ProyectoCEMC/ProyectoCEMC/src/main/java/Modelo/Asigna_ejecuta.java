@@ -36,8 +36,7 @@ public class Asigna_ejecuta {
         this.fecha_fin = fecha_fin;
     }
 
-    public Asigna_ejecuta(Date fecha_inicio, int programas_cognitivos_idprogramas_cognitivos, int pacientes_usuario_idusuario, int entrenadores_usuario_idusuario) {
-        this.fecha_inicio = fecha_inicio;
+    public Asigna_ejecuta(int programas_cognitivos_idprogramas_cognitivos, int pacientes_usuario_idusuario, int entrenadores_usuario_idusuario) {
         this.programas_cognitivos_idprogramas_cognitivos = programas_cognitivos_idprogramas_cognitivos;
         this.pacientes_usuario_idusuario = pacientes_usuario_idusuario;
         this.entrenadores_usuario_idusuario = entrenadores_usuario_idusuario;
