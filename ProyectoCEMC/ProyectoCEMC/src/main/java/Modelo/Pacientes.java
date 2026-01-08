@@ -3,8 +3,8 @@ package Modelo;
 import java.sql.*;
 
 public class Pacientes extends Usuario {
-    
-    //Atributos de la clase Pacientes
+
+    // Atributos de la clase Pacientes
     private int usuario_idusuario;
     private int edad;
     private String genero;
@@ -16,11 +16,15 @@ public class Pacientes extends Usuario {
     private String estado_tratamiento;
     private Date fecha_ingreso;
     private int entrenadores_usuario_idusuario;
-    
-    //Constructores
-    public Pacientes() {}
 
-    public Pacientes(int usuario_idusuario, int edad, String genero, String escolaridad, String ocupacion, String antecedentes_medicos, String alergias, String observaciones, String estado_tratamiento, Date fecha_ingreso, int entrenadores_usuario_idusuario, String nombre, String ap_paterno, String ap_materno, String correo, String telefono, String direccion, String usuario, String contrasena) {
+    // Constructores
+    public Pacientes() {
+    }
+
+    public Pacientes(int usuario_idusuario, int edad, String genero, String escolaridad, String ocupacion,
+            String antecedentes_medicos, String alergias, String observaciones, String estado_tratamiento,
+            Date fecha_ingreso, int entrenadores_usuario_idusuario, String nombre, String ap_paterno, String ap_materno,
+            String correo, String telefono, String direccion, String usuario, String contrasena) {
         super(nombre, ap_paterno, ap_materno, correo, telefono, direccion, usuario, contrasena);
         this.usuario_idusuario = usuario_idusuario;
         this.edad = edad;
@@ -34,8 +38,8 @@ public class Pacientes extends Usuario {
         this.fecha_ingreso = fecha_ingreso;
         this.entrenadores_usuario_idusuario = entrenadores_usuario_idusuario;
     }
-    
-    //Getters y Setters
+
+    // Getters y Setters
     public int getUsuario_idusuario() {
         return usuario_idusuario;
     }
@@ -123,11 +127,15 @@ public class Pacientes extends Usuario {
     public void setEntrenadores_usuario_idusuario(int entrenadores_usuario_idusuario) {
         this.entrenadores_usuario_idusuario = entrenadores_usuario_idusuario;
     }
-    
+
+    @Override
     public void Guardar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
+        super.Guardar();
+        this.usuario_idusuario = this.getIdusuario();
+
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("INSERT INTO pacientes VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)");
-        
+
         Sen.setInt(1, usuario_idusuario);
         Sen.setInt(2, edad);
         Sen.setString(3, genero);
@@ -139,18 +147,18 @@ public class Pacientes extends Usuario {
         Sen.setString(9, estado_tratamiento);
         Sen.setDate(10, fecha_ingreso);
         Sen.setInt(11, entrenadores_usuario_idusuario);
-        
+
         Sen.executeUpdate();
     }
-    
+
     public boolean Buscar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement SQL = CON.prepareStatement("SELECT * FROM pacientes WHERE usuario_idusuario = ?");
-        
+
         SQL.setInt(1, usuario_idusuario);
         ResultSet RS = SQL.executeQuery();
-        
-        if (RS.next()){
+
+        if (RS.next()) {
             usuario_idusuario = RS.getInt("usuario_idusuario");
             edad = RS.getInt("edad");
             genero = RS.getString("genero");
@@ -167,12 +175,13 @@ public class Pacientes extends Usuario {
             return false;
         }
     }
-    
+
     public void Actualizar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
-        PreparedStatement Sen = CON.prepareStatement("UPDATE pacientes SET edad = ?, genero = ?, escolaridad = ?, ocupacion = ?, antecedentes_medicos = ?, alergias = ?, observaciones = ?, estado_tratamiento = ?");
-        
-        Sen.setInt(1,edad);
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement Sen = CON.prepareStatement(
+                "UPDATE pacientes SET edad = ?, genero = ?, escolaridad = ?, ocupacion = ?, antecedentes_medicos = ?, alergias = ?, observaciones = ?, estado_tratamiento = ?");
+
+        Sen.setInt(1, edad);
         Sen.setString(2, genero);
         Sen.setString(3, escolaridad);
         Sen.setString(4, ocupacion);
@@ -180,45 +189,58 @@ public class Pacientes extends Usuario {
         Sen.setString(6, alergias);
         Sen.setString(7, observaciones);
         Sen.setString(8, estado_tratamiento);
-        
+
         Sen.executeUpdate();
     }
-    
+
     public void Borrar() throws SQLException {
-        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("DELETE FROM pacientes WHERE usuario_idusuario = ?");
-        
+
         Sen.setInt(1, usuario_idusuario);
         Sen.executeUpdate();
     }
-    
+
     public ResultSet Mostrar() throws SQLException {
-       Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
-       PreparedStatement SQL = CON.prepareStatement(
-               "SELECT idusuario,"
-                       + "nombre,"
-                       + "ap_paterno,"
-                       + "ap_materno,"
-                       + "correo,"
-                       + "telefono,"
-                       + "direccion,"
-                       + "usuario,"
-                       + "rol,"
-                       + "estatus,"
-                       + "fecha_registro,"
-                       + "edad,"
-                       + "genero,"
-                       + "escolaridad,"
-                       + "ocupacion,"
-                       + "antecedentes_medicos,"
-                       + "alergias,"
-                       + "observaciones,"
-                       + "estado_tratamiento,"
-                       + "fecha_ingreso "
-                       + "FROM usuario JOIN pacientes "
-                       + "ON (usuario.idusuario = pacientes.usuario_idusuario)");
-       
-       ResultSet Res = SQL.executeQuery();
-       return Res;
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement SQL = CON.prepareStatement(
+                "SELECT idusuario,"
+                        + "nombre,"
+                        + "ap_paterno,"
+                        + "ap_materno,"
+                        + "correo,"
+                        + "telefono,"
+                        + "direccion,"
+                        + "usuario,"
+                        + "rol,"
+                        + "estatus,"
+                        + "fecha_registro,"
+                        + "edad,"
+                        + "genero,"
+                        + "escolaridad,"
+                        + "ocupacion,"
+                        + "antecedentes_medicos,"
+                        + "alergias,"
+                        + "observaciones,"
+                        + "estado_tratamiento,"
+                        + "fecha_ingreso "
+                        + "FROM usuario JOIN pacientes "
+                        + "ON (usuario.idusuario = pacientes.usuario_idusuario)");
+
+        ResultSet Res = SQL.executeQuery();
+        return Res;
+    }
+
+    public ResultSet MostrarPorEntrenador(int idEntrenador) throws SQLException {
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement SQL = CON.prepareStatement(
+                "SELECT idusuario, nombre, ap_paterno, ap_materno "
+                        + "FROM usuario JOIN pacientes "
+                        + "ON (usuario.idusuario = pacientes.usuario_idusuario) "
+                        + "WHERE pacientes.entrenadores_usuario_idusuario = ?");
+
+        SQL.setInt(1, idEntrenador);
+        ResultSet Res = SQL.executeQuery();
+        return Res;
     }
 }
