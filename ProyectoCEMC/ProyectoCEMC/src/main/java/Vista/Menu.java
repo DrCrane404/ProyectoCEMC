@@ -27,7 +27,27 @@ public class Menu extends javax.swing.JFrame {
         Btn_Borrar.setBorderPainted(false);
         Btn_Borrar.setOpaque(true);
     }
+    
+    private void configurarRoleAccess() {
+        if (usuario == null)
+            return;
 
+        String role = usuario.getRol();
+        if (role == null)
+            role = "";
+
+        if ("Administrador".equalsIgnoreCase(role)) {
+            
+        } else if ("Entrenador".equalsIgnoreCase(role)) {
+            
+        } else if ("Paciente".equalsIgnoreCase(role)) {
+            
+        } else {
+            
+        }
+
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
