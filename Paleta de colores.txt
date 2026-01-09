@@ -2,5 +2,5 @@ Azul oscuro: #29335C
 Azul oscuro (hover): #3145A8
 Café: #B19D68
 Gris (letras textField): #9C9C9C
-Gris claro: #E2E6E6
+Gris claro: #F2F2F2
 Blanco: #FAFAFA
