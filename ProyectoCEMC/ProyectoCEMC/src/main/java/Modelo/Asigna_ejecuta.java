@@ -211,7 +211,6 @@ public class Asigna_ejecuta {
         Sen.setInt(11, pacientes_usuario_idusuario);
         Sen.setInt(10, programas_cognitivos_idprogramas_cognitivos);
         Sen.setInt(12, entrenadores_usuario_idusuario);
-        Sen.setTimestamp(pacientes_usuario_idusuario, x);
         Sen.executeUpdate();
     }
 
