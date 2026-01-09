@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Asigna_ejecuta;
 import Modelo.Pacientes;
 import Modelo.Programa;
+import Modelo.Usuario;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +12,13 @@ import javax.swing.JOptionPane;
 
 public class AsignarPrograma extends javax.swing.JFrame {
 
-    private int idEntrenador;
+    private Usuario usuario;
     
     private ArrayList<Integer> pacienteIds = new ArrayList<>();
     private ArrayList<Integer> programaIds = new ArrayList<>();
 
-    public AsignarPrograma(int idEntrenador) {
-        this.idEntrenador = idEntrenador;
+    public AsignarPrograma(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         cargarPacientes();
         cargarProgramas();
@@ -42,7 +43,7 @@ public class AsignarPrograma extends javax.swing.JFrame {
     private void cargarPacientes() {
         Pacientes modeloPacientes = new Pacientes();
         try {
-            ResultSet rs = modeloPacientes.MostrarPorEntrenador(this.idEntrenador);
+            ResultSet rs = modeloPacientes.MostrarPorEntrenador(this.usuario.getIdusuario());
             Cmb_Pacientes.removeAllItems();
             pacienteIds.clear();
 
@@ -110,7 +111,7 @@ public class AsignarPrograma extends javax.swing.JFrame {
             Asigna_ejecuta asignacion = new Asigna_ejecuta();
             asignacion.setPacientes_usuario_idusuario(idPaciente);
             asignacion.setProgramas_cognitivos_idprogramas_cognitivos(idPrograma);
-            asignacion.setEntrenadores_usuario_idusuario(this.idEntrenador);
+            asignacion.setEntrenadores_usuario_idusuario(this.usuario.getIdusuario());
             asignacion.setFecha_inicio(fechaInicio);
             asignacion.setFecha_fin(fechaFin);
             asignacion.setObservaciones(observaciones.equals("Observaciones") ? "" : observaciones);

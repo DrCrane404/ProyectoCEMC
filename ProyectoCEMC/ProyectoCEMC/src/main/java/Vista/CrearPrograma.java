@@ -1,14 +1,16 @@
 package Vista;
 
 import Modelo.Programa;
+import Modelo.Usuario;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class CrearPrograma extends javax.swing.JFrame {
-
-    public CrearPrograma() {
+    private Usuario usuario;
+    public CrearPrograma(Usuario usuario) {
+        this.usuario=usuario;
         initComponents();
         Btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +68,7 @@ public class CrearPrograma extends javax.swing.JFrame {
             prog.setNumero_sesiones(sesiones);
             prog.setCosto(costo);
             prog.setFecha_actualizacion(Date.valueOf(LocalDate.now()));
-            // prog.setEntrenadores_usuario_idusuario(ID_ACTUAL); 
+            prog.setEntrenadores_usuario_idusuario(this.usuario.getIdusuario()); 
             prog.Guardar();
             JOptionPane.showMessageDialog(this, "Programa creado exitosamente.");
             this.dispose();

@@ -218,7 +218,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 
                 if(resultado==true) {
                     if(String.valueOf(Txt_Contrasena.getPassword()).equals(usuario.getContrasena())) {
-                        Menu menu = new Menu();
+                        Menu menu = new Menu(usuario);
                         menu.setVisible(true);
                         this.dispose();
                     }else {

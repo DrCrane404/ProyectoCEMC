@@ -1,16 +1,18 @@
 package Vista;
 
+import Modelo.Usuario;
 import java.awt.Color;
 
 // Cambiar Menu dependiendo tipo de usuario
 
 public class Menu extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
-
+    private Usuario usuario;
     Color azul = new Color(41, 51, 92);
     Color hover = new Color(49, 69, 168);
         
-    public Menu() {
+    public Menu(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         Btn_Crear.setFocusPainted(false);
         Btn_Crear.setBorderPainted(false);
