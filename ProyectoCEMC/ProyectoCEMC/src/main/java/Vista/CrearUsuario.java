@@ -1,7 +1,9 @@
 package Vista;
 
+import Modelo.*;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class CrearUsuario extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearUsuario.class.getName());
@@ -93,7 +95,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Lbl_VolverTratamientos.setForeground(new java.awt.Color(41, 51, 92));
         Lbl_VolverTratamientos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Lbl_VolverTratamientos.setText("VOLVER");
-        Lbl_VolverTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Lbl_VolverTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Lbl_VolverTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Lbl_VolverTratamientosMouseClicked(evt);
@@ -202,7 +204,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Btn_OtroTratamiento.setForeground(new java.awt.Color(250, 250, 250));
         Btn_OtroTratamiento.setText("OTRO");
         Btn_OtroTratamiento.setBorder(null);
-        Btn_OtroTratamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_OtroTratamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Btn_OtroTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_OtroTratamientoMouseEntered(evt);
@@ -219,7 +221,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Btn_GuardarTratamientos.setForeground(new java.awt.Color(250, 250, 250));
         Btn_GuardarTratamientos.setText("GUARDAR");
         Btn_GuardarTratamientos.setBorder(null);
-        Btn_GuardarTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_GuardarTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Btn_GuardarTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_GuardarTratamientosMouseEntered(evt);
@@ -293,7 +295,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Lbl_Volver.setForeground(new java.awt.Color(41, 51, 92));
         Lbl_Volver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Lbl_Volver.setText("VOLVER");
-        Lbl_Volver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Lbl_Volver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Lbl_Volver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Lbl_VolverMouseClicked(evt);
@@ -690,7 +692,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Btn_Tratamientos.setForeground(new java.awt.Color(250, 250, 250));
         Btn_Tratamientos.setText("AÑADIR TRATAMIENTO");
         Btn_Tratamientos.setBorder(null);
-        Btn_Tratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_Tratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Btn_Tratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_TratamientosMouseEntered(evt);
@@ -707,7 +709,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Btn_Guardar.setForeground(new java.awt.Color(250, 250, 250));
         Btn_Guardar.setText("GUARDAR");
         Btn_Guardar.setBorder(null);
-        Btn_Guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_Guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Btn_Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_GuardarMouseEntered(evt);
@@ -716,6 +718,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 Btn_GuardarMouseExited(evt);
             }
         });
+        Btn_Guardar.addActionListener(this::Btn_GuardarActionPerformed);
         jPanel2.add(Btn_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 110, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -865,6 +868,61 @@ public class CrearUsuario extends javax.swing.JFrame {
                 
         Dlg_Tratamientos.dispose();
     }//GEN-LAST:event_Btn_GuardarTratamientosActionPerformed
+
+    private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
+        try {
+            if (!Txt_Usuario.getText().isEmpty() && !Txt_ApeMaterno.getText().isEmpty() 
+                && !Txt_ApePaterno.getText().isEmpty() && !Txt_Contrasena.getText().isEmpty() && !Txt_Correo.getText().isEmpty()
+                && !Txt_Direccion.getText().isEmpty() && !Txt_Edad.getText().isEmpty() && !Txt_Escolaridad.getText().isEmpty() && !Txt_EstadoTratamiento.getText().isEmpty()
+                && !Txt_Genero.getText().isEmpty() && !Txt_Nombre.getText().isEmpty() && !Txt_Ocupacion.getText().isEmpty()
+                && !Txt_PregRecuperacion.getText().isEmpty() && !Txt_RespRecuperacion.getText().isEmpty() && !Txt_Telefono.getText().isEmpty()){
+                String Alergias = Txt_Alergias.getText().trim();
+                String AntecedentesMedicos = Txt_AntecedentesMedicos.getText().trim();
+                String ApePaterno = Txt_ApePaterno.getText().trim();
+                String ApeMaterno = Txt_ApeMaterno.getText().trim();
+                String Contrasena = Txt_Contrasena.getText().trim();
+                String Correo = Txt_Correo.getText().trim();
+                String Direccion = Txt_Direccion.getText().trim();
+                int Edad = Integer.parseInt(Txt_Edad.getText().trim());
+                String Escolaridad = Txt_Escolaridad.getText().trim();
+                String EstadoTratamiento = Txt_EstadoTratamiento.getText().trim();
+                String Gen = null;
+                String Nombre = Txt_Nombre.getText().trim();
+                String Observaciones = Txt_Observaciones.getText().trim();
+                String Ocupacion = Txt_Ocupacion.getText().trim();
+                String PregRecuperacion = Txt_PregRecuperacion.getText().trim();
+                String RespRecuperacion = Txt_RespRecuperacion.getText().trim();
+                String Telefono = Txt_Telefono.getText().trim();
+                String Usuario = Txt_Usuario.getText().trim();
+                boolean encontrado = false;
+                for (Genero g : Genero.values()){
+                    if (g.name().equals(Txt_Genero.getText()) || Txt_Genero.getText().equalsIgnoreCase("Hombre") || Txt_Genero.getText().equalsIgnoreCase("Mujer")){
+                        Gen = g.toString();
+                        encontrado = true;
+                    }
+                }
+                if (encontrado == false){
+                    JOptionPane.showMessageDialog(this,"Ingrese un genero valido");
+                } else {
+                    //Instanciar usuario
+                    Usuario usuario = new Usuario(Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
+                    Pacientes paciente = new Pacientes(Edad,Gen,Escolaridad,Ocupacion,AntecedentesMedicos,Alergias,Observaciones,EstadoTratamiento,-1,Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
+                    // Guardar usuario
+                    int aux = usuario.Guardar();
+                    //Añadir claves foraneas
+                    paciente.setUsuario_idusuario(aux);
+                    //Guardar paciente
+                    paciente.Guardar_paciente();
+                    JOptionPane.showMessageDialog(this,"GUARDADO EXITOSAMENTE");
+                }          
+            } else {
+                JOptionPane.showMessageDialog(this,"Por favor, ingrese todos los campos");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,ex.toString());
+        } 
+        
+    }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;
