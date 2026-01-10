@@ -2,6 +2,7 @@ package Vista;
 
 import Modelo.Usuario;
 import java.awt.Color;
+import java.sql.SQLException;
 
 public class Menu extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
@@ -643,7 +644,14 @@ public class Menu extends javax.swing.JFrame {
         });
 
         // Listeners para "Continuar" en los dialogos
-        Btn_Continuar3.addActionListener(this::Btn_Continuar3ActionPerformed);
+        Btn_Continuar3.addActionListener(e -> {
+            try {
+                Btn_Continuar3ActionPerformed(e);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         Btn_Continuar4.addActionListener(this::Btn_Continuar4ActionPerformed);
     }
 
@@ -705,7 +713,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // botones
-    private void Btn_Continuar3ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void Btn_Continuar3ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
         String seleccion = (String) Cmb_Actualizar.getSelectedItem();
         if (seleccion == null)
             return;
@@ -745,8 +753,25 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } else if ("Asignación de programa".equals(seleccion)) {
-            String idStr = javax.swing.JOptionPane.showInputDialog("Ingrese ID de la Asignación a actualizar:");
-            // Todo: 3 id? nueva vista?
+            String idStr = javax.swing.JOptionPane.showInputDialog("Ingrese ID del paciente asociado a la Asignación a actualizar:");
+            if (idStr != null && !idStr.isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    Modelo.Programa p = new Modelo.Programa();
+                    p.setIdprogramas_cognitivos(id);
+                    if (p.Buscar()) {
+                        CrearPrograma v = new CrearPrograma(usuario, p);
+                        v.setVisible(true);
+                        Dlg_Actualizar.dispose();
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Programa no encontrado.");
+                    }
+                } catch (NumberFormatException e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
+                } catch (java.sql.SQLException e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error de base de datos: " + e.getMessage());
+                }
+            }
         } else if ("Paciente".equals(seleccion)) {
             // autoedicion
             if (usuario.getRol().equalsIgnoreCase("Paciente")) {
@@ -808,7 +833,8 @@ public class Menu extends javax.swing.JFrame {
             return;
 
         if ("Añadir paciente".equals(seleccion)) {
-            AnadirPaciente v = new AnadirPaciente();
+
+            AnadirPaciente v = new AnadirPaciente(usuario);
             v.setVisible(true);
         } else if ("Programa cognitivo".equals(seleccion)) {
             CrearPrograma v = new CrearPrograma(usuario);
@@ -838,7 +864,16 @@ public class Menu extends javax.swing.JFrame {
                 MostrarEntrenadores v = new MostrarEntrenadores(usuario);
                 v.setVisible(true);
             }
+            case "Mostrar entrenador" -> {
+                MostrarEntrenadores v = new MostrarEntrenadores(usuario);
+                v.setVisible(true);
+            }
             case "Mostrar asignaciones de programa" -> {
+                MostrarAsignaciones v = new MostrarAsignaciones(usuario);
+                v.setVisible(true);
+            }
+            
+            case "Mostrar programas asignados" -> {
                 MostrarAsignaciones v = new MostrarAsignaciones(usuario);
                 v.setVisible(true);
             }

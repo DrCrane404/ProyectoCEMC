@@ -16,15 +16,21 @@ public class AsignarPrograma extends javax.swing.JFrame {
     private ArrayList<Integer> pacienteIds = new ArrayList<>();
     private ArrayList<Integer> programaIds = new ArrayList<>();
     private int idEntrenador;
-
+    private Asigna_ejecuta asignacion = new Asigna_ejecuta();
     Color azul = new Color(41, 51, 92);
     Color hover = new Color(49, 69, 168);
 
     public AsignarPrograma(Usuario usuario) {
+        this(usuario, null);
+    }
+    public AsignarPrograma(Usuario usuario, Asigna_ejecuta asignacion) {
         this.usuario = usuario;
+        this.asignacion=asignacion;
         initComponents();
-        cargarPacientes();
-        cargarProgramas();
+        if (asignacion == null){
+            cargarPacientes();
+            cargarProgramas();
+        }
         Btn_Asignar.setFocusPainted(false);
         Btn_Asignar.setBorderPainted(false);
         Btn_Asignar.setOpaque(true);
@@ -50,23 +56,23 @@ public class AsignarPrograma extends javax.swing.JFrame {
 
     private void cargarPacientes() {
         Pacientes modeloPacientes = new Pacientes();
-        try {
-            ResultSet rs = modeloPacientes.MostrarPorEntrenador(this.usuario.getIdusuario());
-            Cmb_Pacientes.removeAllItems();
-            pacienteIds.clear();
+            try {
+                ResultSet rs = modeloPacientes.MostrarPorEntrenador(this.usuario.getIdusuario());
+                Cmb_Pacientes.removeAllItems();
+                pacienteIds.clear();
 
-            Cmb_Pacientes.addItem("Seleccionar Paciente...");
-            pacienteIds.add(-1); // Dummy ID for index 0
+                Cmb_Pacientes.addItem("Seleccionar Paciente...");
+                pacienteIds.add(-1); // Dummy ID for index 0
 
-            while (rs.next()) {
-                int id = rs.getInt("idusuario");
-                String nombre = rs.getString("nombre") + " " + rs.getString("ap_paterno");
-                Cmb_Pacientes.addItem(nombre);
-                pacienteIds.add(id);
+                while (rs.next()) {
+                    int id = rs.getInt("idusuario");
+                    String nombre = rs.getString("nombre") + " " + rs.getString("ap_paterno");
+                    Cmb_Pacientes.addItem(nombre);
+                    pacienteIds.add(id);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error al cargar pacientes: " + ex.getMessage());
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar pacientes: " + ex.getMessage());
-        }
     }
 
     private void cargarProgramas() {
