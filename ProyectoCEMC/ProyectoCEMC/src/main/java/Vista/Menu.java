@@ -3,7 +3,7 @@ package Vista;
 import Modelo.Usuario;
 import java.awt.Color;
 
-// Cambiar Menu dependiendo tipo de usuario
+// Cambiar Menu dependiendo tipo de usuarioe
 
 public class Menu extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
@@ -708,7 +708,7 @@ public class Menu extends javax.swing.JFrame {
         if (seleccion == null)
             return;
 
-<<<<<<< HEAD
+
         
 
         if ("Entrenador".equals(seleccion)) {
@@ -723,21 +723,8 @@ public class Menu extends javax.swing.JFrame {
                     ActEntrenador v = new ActEntrenador(usuario, Integer.parseInt(idStr));
                     v.setVisible(true);
                 }
-=======
-        if ("Entrenador".equals(seleccion) || "Paciente".equals(seleccion)) {
-            // If user is editing themselves
-            if (usuario.getRol().equalsIgnoreCase(seleccion)) {
-                if ("Paciente".equals(seleccion)) {
-                ActPaciente v = new ActPaciente(usuario);
-                v.setVisible(true);
-            } else {
-                ActEntrenador v = new ActEntrenador(usuario);
-                v.setVisible(true);
-            }
 
-            Dlg_Actualizar.dispose();
->>>>>>> e678d449a3cb595510aaff99c0163b2eacf6f82a
-            }
+            } Dlg_Actualizar.dispose();
         } else if ("Programa cognitivo".equals(seleccion)) {
             String idStr = javax.swing.JOptionPane.showInputDialog("Ingrese ID del Programa a actualizar:");
             if (idStr != null && !idStr.isEmpty()) {
@@ -773,7 +760,7 @@ public class Menu extends javax.swing.JFrame {
                     ActPaciente v = new ActPaciente(usuario, Integer.parseInt(idStr));
                     v.setVisible(true);
                 }
-            }
+            }Dlg_Actualizar.dispose();
         }
     }
 
@@ -877,6 +864,10 @@ public class Menu extends javax.swing.JFrame {
                 MostrarProgramasCognitivos v = new MostrarProgramasCognitivos(usuario);
                 v.setVisible(true);
 
+            }
+            case "Mostrar usuarios" -> {
+                MostrarUsuarios v = new MostrarUsuarios(usuario);
+                v.setVisible(true);
             }
             default -> {
             }
