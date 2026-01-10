@@ -557,7 +557,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="550" y="410" width="110" height="30"/>
+              <AbsoluteConstraints x="650" y="410" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -573,7 +573,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="390" y="260" width="350" height="130"/>
+              <AbsoluteConstraints x="390" y="260" width="390" height="130"/>
             </Constraint>
           </Constraints>
 
@@ -591,7 +591,7 @@
                               <Component id="Txt_Especialidad" min="-2" pref="285" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

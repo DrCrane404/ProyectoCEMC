@@ -3,29 +3,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Modelo.*;
+
+import Modelo.Entrenadores;
+import Modelo.Usuario;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
  * @author max30
  */
-public class CrearEntrenador extends javax.swing.JFrame {
+public class ActEntrenador extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearEntrenador.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ActEntrenador.class.getName());
     private Usuario usuario;
     private Menu Menu;
     Color azul = new Color(41, 51, 92);
     Color hover = new Color(49, 69, 168);
     /**
-     * Creates new form CrearEntrenador
+     * Creates new form ActEntrenador
      */
-    public CrearEntrenador() {
+    public ActEntrenador(Usuario usuario) {
+<<<<<<< HEAD
+        this.usuario=usuario;
         initComponents();
-        Btn_Guardar.setFocusPainted(false);
-        Btn_Guardar.setBorderPainted(false);
-        Btn_Guardar.setOpaque(true);
+    }
+    public ActEntrenador(Usuario usuario, int idAmodificar) {
+        this.usuario=usuario;
+=======
+        this.usuario = usuario;
+>>>>>>> e678d449a3cb595510aaff99c0163b2eacf6f82a
+        initComponents();
+        Btn_Buscar.setFocusPainted(false);
+        Btn_Buscar.setBorderPainted(false);
+        Btn_Buscar.setOpaque(true);
+        Btn_Actualizar.setFocusPainted(false);
+        Btn_Actualizar.setBorderPainted(false);
+        Btn_Actualizar.setOpaque(true);
+        Txt_Nombre.setText(usuario.getNombre());
+        Txt_ApePaterno.setText(usuario.getAp_paterno());
+        Txt_ApeMaterno.setText(usuario.getAp_materno());
+        Txt_Contrasena.setText(usuario.getContrasena());
+        Txt_Correo.setText(usuario.getCorreo());
+        Txt_Direccion.setText(usuario.getDireccion());
+        Txt_Telefono.setText(usuario.getTelefono());
+        Txt_Usuario.setText(usuario.getUsuario());
+        Txt_PregRecuperacion.setText(usuario.getPregunta_recuperacion());
+        Txt_RespRecuperacion.setText(usuario.getRespuesta_recuperacion());
     }
 
     /**
@@ -48,25 +71,22 @@ public class CrearEntrenador extends javax.swing.JFrame {
         Txt_Nombre = new javax.swing.JTextField();
         Txt_ApePaterno = new javax.swing.JTextField();
         Txt_ApeMaterno = new javax.swing.JTextField();
-        Txt_Edad = new javax.swing.JTextField();
-        Txt_Genero = new javax.swing.JTextField();
-        Txt_Escolaridad = new javax.swing.JTextField();
-        Txt_Ocupacion = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         Txt_Correo = new javax.swing.JTextField();
         Txt_Telefono = new javax.swing.JTextField();
         Txt_Direccion = new javax.swing.JTextField();
-        Btn_Guardar = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        Txt_Especialidad = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         Txt_Usuario = new javax.swing.JTextField();
         Txt_Contrasena = new javax.swing.JTextField();
         Txt_PregRecuperacion = new javax.swing.JTextField();
         Txt_RespRecuperacion = new javax.swing.JTextField();
+        Btn_Actualizar = new javax.swing.JButton();
+        Btn_Buscar = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        Txt_Especialidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +98,7 @@ public class CrearEntrenador extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(250, 250, 250));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Crear Paciente");
+        jLabel1.setText("Actualizar Entrenador");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,51 +197,6 @@ public class CrearEntrenador extends javax.swing.JFrame {
             }
         });
 
-        Txt_Edad.setBackground(new java.awt.Color(250, 250, 250));
-        Txt_Edad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Txt_Edad.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_Edad.setText("Ingrese su edad");
-        Txt_Edad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        Txt_Edad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Txt_EdadMousePressed(evt);
-            }
-        });
-
-        Txt_Genero.setBackground(new java.awt.Color(250, 250, 250));
-        Txt_Genero.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Txt_Genero.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_Genero.setText("Ingrese su género");
-        Txt_Genero.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        Txt_Genero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Txt_GeneroMousePressed(evt);
-            }
-        });
-        Txt_Genero.addActionListener(this::Txt_GeneroActionPerformed);
-
-        Txt_Escolaridad.setBackground(new java.awt.Color(250, 250, 250));
-        Txt_Escolaridad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Txt_Escolaridad.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_Escolaridad.setText("Ingrese su escolaridad");
-        Txt_Escolaridad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        Txt_Escolaridad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Txt_EscolaridadMousePressed(evt);
-            }
-        });
-
-        Txt_Ocupacion.setBackground(new java.awt.Color(250, 250, 250));
-        Txt_Ocupacion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Txt_Ocupacion.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_Ocupacion.setText("Ingrese su ocupación");
-        Txt_Ocupacion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        Txt_Ocupacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Txt_OcupacionMousePressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -230,23 +205,15 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Txt_Ocupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(Txt_Nombre)
-                            .addComponent(Txt_Edad, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Txt_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(Txt_Escolaridad, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Txt_ApePaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Txt_ApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(10, 10, 10))))
+                        .addGap(10, 412, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Txt_Nombre)
+                            .addComponent(Txt_ApePaterno, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Txt_ApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,20 +223,13 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_ApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Txt_ApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_Ocupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_Escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Txt_ApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 530, 170));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 370, 160));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
 
@@ -334,70 +294,10 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 .addComponent(Txt_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Txt_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 210, 170));
-
-        Btn_Guardar.setBackground(new java.awt.Color(41, 51, 92));
-        Btn_Guardar.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
-        Btn_Guardar.setForeground(new java.awt.Color(250, 250, 250));
-        Btn_Guardar.setText("GUARDAR");
-        Btn_Guardar.setBorder(null);
-        Btn_Guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Btn_Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_GuardarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_GuardarMouseExited(evt);
-            }
-        });
-        Btn_Guardar.addActionListener(this::Btn_GuardarActionPerformed);
-        jPanel2.add(Btn_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 110, 30));
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
-
-        jLabel6.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(41, 51, 92));
-        jLabel6.setText("Datos de Entrenador");
-
-        Txt_Especialidad.setBackground(new java.awt.Color(250, 250, 250));
-        Txt_Especialidad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Txt_Especialidad.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_Especialidad.setText("Ingrese su especialidad");
-        Txt_Especialidad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        Txt_Especialidad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Txt_EspecialidadMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Txt_Especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_Especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-
-        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 390, 130));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 210, 160));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
 
@@ -463,7 +363,7 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Txt_PregRecuperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Txt_RespRecuperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,19 +381,104 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 370, 130));
+
+        Btn_Actualizar.setBackground(new java.awt.Color(41, 51, 92));
+        Btn_Actualizar.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Btn_Actualizar.setForeground(new java.awt.Color(250, 250, 250));
+        Btn_Actualizar.setText("ACTUALIZAR");
+        Btn_Actualizar.setBorder(null);
+        Btn_Actualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Btn_Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_ActualizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_ActualizarMouseExited(evt);
+            }
+        });
+        Btn_Actualizar.addActionListener(this::Btn_ActualizarActionPerformed);
+        jPanel2.add(Btn_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 110, 30));
+
+        Btn_Buscar.setBackground(new java.awt.Color(41, 51, 92));
+        Btn_Buscar.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Btn_Buscar.setForeground(new java.awt.Color(250, 250, 250));
+        Btn_Buscar.setText("BUSCAR");
+        Btn_Buscar.setBorder(null);
+        Btn_Buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Btn_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_BuscarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_BuscarMouseExited(evt);
+            }
+        });
+        Btn_Buscar.addActionListener(this::Btn_BuscarActionPerformed);
+        jPanel2.add(Btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 110, 30));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
+
+        jLabel6.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(41, 51, 92));
+        jLabel6.setText("Datos de Entrenador");
+
+        Txt_Especialidad.setBackground(new java.awt.Color(250, 250, 250));
+        Txt_Especialidad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        Txt_Especialidad.setForeground(new java.awt.Color(156, 156, 156));
+        Txt_Especialidad.setText("Ingrese su especialidad");
+        Txt_Especialidad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        Txt_Especialidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Txt_EspecialidadMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Txt_Especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Txt_Especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 340, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -519,26 +504,6 @@ public class CrearEntrenador extends javax.swing.JFrame {
     private void Txt_ApeMaternoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_ApeMaternoMousePressed
         Txt_ApeMaterno.setText("");
     }//GEN-LAST:event_Txt_ApeMaternoMousePressed
-
-    private void Txt_EdadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_EdadMousePressed
-        Txt_Edad.setText("");
-    }//GEN-LAST:event_Txt_EdadMousePressed
-
-    private void Txt_GeneroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_GeneroMousePressed
-        Txt_Genero.setText("");
-    }//GEN-LAST:event_Txt_GeneroMousePressed
-
-    private void Txt_GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_GeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_GeneroActionPerformed
-
-    private void Txt_EscolaridadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_EscolaridadMousePressed
-        Txt_Escolaridad.setText("");
-    }//GEN-LAST:event_Txt_EscolaridadMousePressed
-
-    private void Txt_OcupacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_OcupacionMousePressed
-        Txt_Ocupacion.setText("");
-    }//GEN-LAST:event_Txt_OcupacionMousePressed
 
     private void Txt_CorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_CorreoMousePressed
         Txt_Correo.setText("");
@@ -568,75 +533,48 @@ public class CrearEntrenador extends javax.swing.JFrame {
         Txt_RespRecuperacion.setText("");
     }//GEN-LAST:event_Txt_RespRecuperacionMousePressed
 
-    private void Btn_GuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_GuardarMouseEntered
-        Btn_Guardar.setBackground(hover);
-    }//GEN-LAST:event_Btn_GuardarMouseEntered
+    private void Btn_ActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ActualizarMouseEntered
+        Btn_Actualizar.setBackground(hover);
+    }//GEN-LAST:event_Btn_ActualizarMouseEntered
 
-    private void Btn_GuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_GuardarMouseExited
-        Btn_Guardar.setBackground(azul);
-    }//GEN-LAST:event_Btn_GuardarMouseExited
+    private void Btn_ActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ActualizarMouseExited
+        Btn_Actualizar.setBackground(azul);
+    }//GEN-LAST:event_Btn_ActualizarMouseExited
 
-    private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
-        try {
-            if (!Txt_Usuario.getText().isEmpty() && !Txt_ApeMaterno.getText().isEmpty()
-                && !Txt_ApePaterno.getText().isEmpty() && !Txt_Contrasena.getText().isEmpty() && !Txt_Correo.getText().isEmpty()
-                && !Txt_Direccion.getText().isEmpty() && !Txt_Edad.getText().isEmpty() && !Txt_Escolaridad.getText().isEmpty()&& !Txt_Genero.getText().isEmpty() && !Txt_Nombre.getText().isEmpty() && !Txt_Ocupacion.getText().isEmpty()
-                && !Txt_PregRecuperacion.getText().isEmpty() && !Txt_RespRecuperacion.getText().isEmpty() && !Txt_Telefono.getText().isEmpty()){
-                String ApePaterno = Txt_ApePaterno.getText().trim();
-                String ApeMaterno = Txt_ApeMaterno.getText().trim();
-                String Contrasena = Txt_Contrasena.getText().trim();
-                String Correo = Txt_Correo.getText().trim();
-                String Direccion = Txt_Direccion.getText().trim();
-                String Especialidad = Txt_Especialidad.getText().trim();
+    private void Btn_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ActualizarActionPerformed
 
-                String Nombre = Txt_Nombre.getText().trim();
-                String PregRecuperacion = Txt_PregRecuperacion.getText().trim();
-                String RespRecuperacion = Txt_RespRecuperacion.getText().trim();
-                String Telefono = Txt_Telefono.getText().trim();
-                String Usuario = Txt_Usuario.getText().trim();
-                boolean encontrado = false;
-                
-                if (encontrado == false){
-                    JOptionPane.showMessageDialog(this,"Ingrese un genero valido");
-                } else {
-                    //Instanciar usuario
-                    Usuario usuario = new Usuario(Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
-                    Entrenadores entrenador = new Entrenadores(Especialidad,Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
-                    // Guardar usuario
-                    int aux = usuario.Guardar();
-                    //Añadir claves foraneas
-                    entrenador.setUsuario_idusuario(aux);
-                    //Guardar paciente
-                    entrenador.Guardar_entrenador();
-                    JOptionPane.showMessageDialog(this,"GUARDADO EXITOSAMENTE");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this,"Por favor, ingrese todos los campos");
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,ex.toString());
-        }
-    }//GEN-LAST:event_Btn_GuardarActionPerformed
+    }//GEN-LAST:event_Btn_ActualizarActionPerformed
+
+    private void Btn_BuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BuscarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_BuscarMouseEntered
+
+    private void Btn_BuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BuscarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_BuscarMouseExited
+
+    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_BuscarActionPerformed
 
     private void Txt_EspecialidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_EspecialidadMousePressed
         // TODO add your handling code here:
         Txt_Especialidad.setText("");
     }//GEN-LAST:event_Txt_EspecialidadMousePressed
-  
+
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Guardar;
+    private javax.swing.JButton Btn_Actualizar;
+    private javax.swing.JButton Btn_Buscar;
     private javax.swing.JLabel Lbl_Volver;
     private javax.swing.JTextField Txt_ApeMaterno;
     private javax.swing.JTextField Txt_ApePaterno;
     private javax.swing.JTextField Txt_Contrasena;
     private javax.swing.JTextField Txt_Correo;
     private javax.swing.JTextField Txt_Direccion;
-    private javax.swing.JTextField Txt_Edad;
-    private javax.swing.JTextField Txt_Escolaridad;
     private javax.swing.JTextField Txt_Especialidad;
-    private javax.swing.JTextField Txt_Genero;
     private javax.swing.JTextField Txt_Nombre;
-    private javax.swing.JTextField Txt_Ocupacion;
     private javax.swing.JTextField Txt_PregRecuperacion;
     private javax.swing.JTextField Txt_RespRecuperacion;
     private javax.swing.JTextField Txt_Telefono;

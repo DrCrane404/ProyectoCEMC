@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class ActPaciente extends javax.swing.JFrame {
     private Usuario usuario;
+    private Pacientes paciente;
     private Menu Menu;
     Color azul = new Color(41, 51, 92);
     Color hover = new Color(49, 69, 168);
@@ -21,8 +22,36 @@ public class ActPaciente extends javax.swing.JFrame {
     /**
      * Creates new form ActPaciente
      */
-    public ActPaciente() {
+<<<<<<< HEAD
+    public ActPaciente(Usuario usuario) {//autoedicion
+        this.usuario=usuario;
         initComponents();
+    }
+    public ActPaciente(Usuario usuario, int idAeditar) {//edicion de admin
+        this.usuario=usuario;
+=======
+    public ActPaciente(Usuario usuario) {
+        this.usuario = usuario;
+>>>>>>> e678d449a3cb595510aaff99c0163b2eacf6f82a
+        initComponents();
+        Btn_Actualizar.setFocusPainted(false);
+        Btn_Actualizar.setBorderPainted(false);
+        Btn_Actualizar.setOpaque(true);
+        Btn_Tratamientos.setFocusPainted(false);
+        Btn_Tratamientos.setBorderPainted(false);
+        Btn_Tratamientos.setOpaque(true);
+        Txt_Nombre.setText(usuario.getNombre());
+        Txt_ApePaterno.setText(usuario.getAp_paterno());
+        Txt_ApeMaterno.setText(usuario.getAp_materno());
+        Txt_Contrasena.setText(usuario.getContrasena());
+        Txt_Correo.setText(usuario.getCorreo());
+        Txt_Direccion.setText(usuario.getDireccion());
+        Txt_Telefono.setText(usuario.getTelefono());
+        Txt_Usuario.setText(usuario.getUsuario());
+        Txt_PregRecuperacion.setText(usuario.getPregunta_recuperacion());
+        Txt_RespRecuperacion.setText(usuario.getRespuesta_recuperacion());
+        //int edad = paciente.getEdad();
+        //Txt_Edad.setText(String.valueOf(edad));
     }
 
     /**
@@ -68,7 +97,6 @@ public class ActPaciente extends javax.swing.JFrame {
         Txt_RespRecuperacion = new javax.swing.JTextField();
         Btn_Tratamientos = new javax.swing.JButton();
         Btn_Actualizar = new javax.swing.JButton();
-        Btn_Buscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +188,6 @@ public class ActPaciente extends javax.swing.JFrame {
         Txt_ApePaterno.setBackground(new java.awt.Color(250, 250, 250));
         Txt_ApePaterno.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         Txt_ApePaterno.setForeground(new java.awt.Color(156, 156, 156));
-        Txt_ApePaterno.setText("Ingrese su primer apellido");
         Txt_ApePaterno.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
         Txt_ApePaterno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -514,7 +541,7 @@ public class ActPaciente extends javax.swing.JFrame {
         Btn_Tratamientos.setBackground(new java.awt.Color(41, 51, 92));
         Btn_Tratamientos.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         Btn_Tratamientos.setForeground(new java.awt.Color(250, 250, 250));
-        Btn_Tratamientos.setText("AÑADIR TRATAMIENTO");
+        Btn_Tratamientos.setText("MODIFICAR TRATAMIENTO");
         Btn_Tratamientos.setBorder(null);
         Btn_Tratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Btn_Tratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -543,24 +570,7 @@ public class ActPaciente extends javax.swing.JFrame {
             }
         });
         Btn_Actualizar.addActionListener(this::Btn_ActualizarActionPerformed);
-        jPanel2.add(Btn_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 110, 30));
-
-        Btn_Buscar.setBackground(new java.awt.Color(41, 51, 92));
-        Btn_Buscar.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
-        Btn_Buscar.setForeground(new java.awt.Color(250, 250, 250));
-        Btn_Buscar.setText("BUSCAR");
-        Btn_Buscar.setBorder(null);
-        Btn_Buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Btn_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_BuscarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_BuscarMouseExited(evt);
-            }
-        });
-        Btn_Buscar.addActionListener(this::Btn_BuscarActionPerformed);
-        jPanel2.add(Btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 110, 30));
+        jPanel2.add(Btn_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -592,15 +602,15 @@ public class ActPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_Lbl_VolverMouseClicked
 
     private void Txt_NombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_NombreMousePressed
-        Txt_Nombre.setText("");
+        
     }//GEN-LAST:event_Txt_NombreMousePressed
 
     private void Txt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_NombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_Txt_NombreActionPerformed
 
     private void Txt_ApePaternoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_ApePaternoMousePressed
-        Txt_ApePaterno.setText("");
+ 
     }//GEN-LAST:event_Txt_ApePaternoMousePressed
 
     private void Txt_ApeMaternoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Txt_ApeMaternoMousePressed
@@ -697,21 +707,8 @@ public class ActPaciente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Btn_ActualizarActionPerformed
 
-    private void Btn_BuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BuscarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_BuscarMouseEntered
-
-    private void Btn_BuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BuscarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_BuscarMouseExited
-
-    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_BuscarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Actualizar;
-    private javax.swing.JButton Btn_Buscar;
     private javax.swing.JButton Btn_Tratamientos;
     private javax.swing.JLabel Lbl_Volver;
     private javax.swing.JTextField Txt_Alergias;
