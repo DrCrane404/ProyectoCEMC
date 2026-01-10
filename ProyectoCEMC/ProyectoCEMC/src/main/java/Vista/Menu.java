@@ -710,9 +710,6 @@ public class Menu extends javax.swing.JFrame {
         if (seleccion == null)
             return;
 
-
-        
-
         if ("Entrenador".equals(seleccion)) {
             // If user is editing themselves
             if (usuario.getRol().equalsIgnoreCase("Entrenador")) {
@@ -821,6 +818,8 @@ public class Menu extends javax.swing.JFrame {
         } else if ("Asignar programa".equals(seleccion)) {
             AsignarPrograma v = new AsignarPrograma(usuario);
             v.setVisible(true);
+        } else if ("Crear Paciente".equals(seleccion)){
+            CrearPaciente v = new CrearPaciente(usuario);
         }
         
         Dlg_Crear.dispose();
