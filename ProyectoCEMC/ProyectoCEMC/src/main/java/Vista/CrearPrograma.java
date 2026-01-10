@@ -9,9 +9,19 @@ import javax.swing.JOptionPane;
 
 public class CrearPrograma extends javax.swing.JFrame {
     private Usuario usuario;
+    private Programa programaEdicion;
+
     public CrearPrograma(Usuario usuario) {
-        this.usuario=usuario;
+        this(usuario, null);
+    }
+
+    public CrearPrograma(Usuario usuario, Programa programaEdicion) {
+        this.usuario = usuario;
+        this.programaEdicion = programaEdicion; //Usar la misma vista al editar programa
         initComponents();
+        if (programaEdicion != null) {
+            cargarDatos();
+        }
         Btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_GuardarActionPerformed(evt);
@@ -28,10 +38,26 @@ public class CrearPrograma extends javax.swing.JFrame {
     private void Lbl_VolverMouseClicked(java.awt.event.MouseEvent evt) {
         this.dispose();
     }
+    //esto es para usar la misma vista desde actualizar programa, trucha
+    private void cargarDatos() {
+        jLabel1.setText("Actualizar Programa");
+        setTitle("Actualizar Programa");
+        Btn_Guardar.setText("ACTUALIZAR PROGRAMA");
+
+        Txt_Nombre.setText(programaEdicion.getNombre());
+        Txt_Tipo.setText(programaEdicion.getTipo());
+        Txt_Nivel.setText(programaEdicion.getNivel());
+        Txt_Version.setText(programaEdicion.getVersion());
+        Txt_Objetivos.setText(programaEdicion.getObjetivos());
+        Txt_Descripcion.setText(programaEdicion.getDescripcion());
+        Txt_Duracion.setText(String.valueOf(programaEdicion.getDuracion_semanas()));
+        Txt_Sesiones.setText(String.valueOf(programaEdicion.getNumero_sesiones()));
+        Txt_Costo.setText(String.valueOf(programaEdicion.getCosto()));
+    }
 
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            
+
             String nombre = Txt_Nombre.getText();
             String tipo = Txt_Tipo.getText();
             String nivel = Txt_Nivel.getText();
@@ -39,7 +65,6 @@ public class CrearPrograma extends javax.swing.JFrame {
             String objetivos = Txt_Objetivos.getText();
             String descripcion = Txt_Descripcion.getText();
 
-          
             if (nombre.isEmpty() || tipo.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El nombre y tipo son obligatorios.");
                 return;
@@ -54,23 +79,43 @@ public class CrearPrograma extends javax.swing.JFrame {
                 sesiones = Integer.parseInt(Txt_Sesiones.getText());
                 costo = Double.parseDouble(Txt_Costo.getText());
             } catch (NumberFormatException e) {
-                
+
             }
 
-            Programa prog = new Programa();
-            prog.setNombre(nombre);
-            prog.setTipo(tipo);
-            prog.setNivel(nivel);
-            prog.setVersion(version);
-            prog.setObjetivos(objetivos);
-            prog.setDescripcion(descripcion);
-            prog.setDuracion_semanas(duracion);
-            prog.setNumero_sesiones(sesiones);
-            prog.setCosto(costo);
-            prog.setFecha_actualizacion(Date.valueOf(LocalDate.now()));
-            prog.setEntrenadores_usuario_idusuario(this.usuario.getIdusuario()); 
-            prog.Guardar();
-            JOptionPane.showMessageDialog(this, "Programa creado exitosamente.");
+            if (programaEdicion != null) {
+                // para actualizar en la misma vista, OJO
+                programaEdicion.setNombre(nombre);
+                programaEdicion.setTipo(tipo);
+                programaEdicion.setNivel(nivel);
+                programaEdicion.setVersion(version);
+                programaEdicion.setObjetivos(objetivos);
+                programaEdicion.setDescripcion(descripcion);
+                programaEdicion.setDuracion_semanas(duracion);
+                programaEdicion.setNumero_sesiones(sesiones);
+                programaEdicion.setCosto(costo);
+                programaEdicion.setFecha_actualizacion(Date.valueOf(LocalDate.now()));
+                // El entrenador se mantiene???? No lo modifica el admin??
+                // El admin sabe SQL, que lo modifique en la base de datos
+
+                programaEdicion.Actualizar();
+                JOptionPane.showMessageDialog(this, "Programa actualizado exitosamente.");
+            } else {
+                // Crear
+                Programa prog = new Programa();
+                prog.setNombre(nombre);
+                prog.setTipo(tipo);
+                prog.setNivel(nivel);
+                prog.setVersion(version);
+                prog.setObjetivos(objetivos);
+                prog.setDescripcion(descripcion);
+                prog.setDuracion_semanas(duracion);
+                prog.setNumero_sesiones(sesiones);
+                prog.setCosto(costo);
+                prog.setFecha_actualizacion(Date.valueOf(LocalDate.now()));
+                prog.setEntrenadores_usuario_idusuario(this.usuario.getIdusuario());
+                prog.Guardar();
+                JOptionPane.showMessageDialog(this, "Programa creado exitosamente.");
+            }
             this.dispose();
 
         } catch (SQLException ex) {
@@ -78,9 +123,10 @@ public class CrearPrograma extends javax.swing.JFrame {
         }
     }
 
- @SuppressWarnings("unchecked")
-    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    @SuppressWarnings("unchecked")
+
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
@@ -185,9 +231,9 @@ public class CrearPrograma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Txt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_NombreActionPerformed
+    private void Txt_NombreActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Txt_NombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_NombreActionPerformed
+    }// GEN-LAST:event_Txt_NombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;
