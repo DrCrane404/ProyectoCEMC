@@ -1,23 +1,22 @@
 package Vista;
 
-import Modelo.Entrenadores;
 import Modelo.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class MostrarProgramasCognitivos extends javax.swing.JFrame {
+public class MostrarUsuarios extends javax.swing.JFrame {
 
     private Usuario usuario;
 
     // Default Constructor for IDE preview
-    public MostrarProgramasCognitivos() {
+    public MostrarUsuarios() {
         initComponents();
-        setTitle("Mostrar Programas Cognitivos");
+        setTitle("Mostrar Usuarios");
     }
 
-    public MostrarProgramasCognitivos(Usuario usuario) {
+    public MostrarUsuarios(Usuario usuario) {
         this.usuario=usuario;
         initComponents();
         cargarTabla();
@@ -34,30 +33,31 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
     }
 
     private void cargarTabla() {
-        DefaultTableModel model = (DefaultTableModel) Tbl_ProgramasCongnitivos.getModel();
+        DefaultTableModel model = (DefaultTableModel) Tbl_Usuarios.getModel();
         model.setRowCount(0); // Clear existing data
 
-        Entrenadores modeloEntrenadores = new Entrenadores();
+        Usuario modeloUsuario = new Usuario();
         try {
-            ResultSet rs = modeloEntrenadores.Mostrar_entrenadores();
+            ResultSet rs = modeloUsuario.Mostrar();
             while (rs.next()) {
-                int id = rs.getInt("idprogramas_cognitivos");
+                int id = rs.getInt("idusuario");
                 String nombre = rs.getString("nombre");
-                String descripcion = rs.getString("descripcion");
-                String tipo = rs.getString("tipo");
-                String nivel = rs.getString("nivel");
-                String duracion_semanas = rs.getString("duracion_semanas");
-                String numero_sesiones = rs.getString("numero_sesiones");
-                String costo = rs.getString("costo");
-                String objetivos = rs.getString("objetivos");
-                String version = rs.getString("version");
-                String fecha_actualizacion = rs.getString("fecha_actualizacion");
-                int id_entrenadores = rs.getInt("entrenadores_usuario_idusuario");
+                String apellidos = rs.getString("ap_paterno") + " " + rs.getString("ap_materno");
+                String correo = rs.getString("correo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String usuario1 = rs.getString("usuario");
+                String pregunta_recuperacion = rs.getString("pregunta_recuperacion");
+                String respuesta_recuperacion = rs.getString("respuesta_recuperacion");
+                String rol = rs.getString("rol");
+                String estatus = rs.getString("estatus");
+                String fecha_registro = rs.getString("fecha_registro");
+                String ultimo_acceso = rs.getString("ultimo_acceso");
 
-                model.addRow(new Object[] { id, nombre, descripcion, tipo, nivel, duracion_semanas, numero_sesiones, costo, objetivos, version, fecha_actualizacion,id_entrenadores });
+                model.addRow(new Object[] { id, nombre, apellidos, correo, telefono, direccion, usuario1, pregunta_recuperacion, respuesta_recuperacion, rol, estatus, fecha_registro, ultimo_acceso });
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar programas cognitivos: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al cargar usuarios: " + ex.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tbl_ProgramasCongnitivos = new javax.swing.JTable();
+        Tbl_Usuarios = new javax.swing.JTable();
         Lbl_Volver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,29 +89,29 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel1.setText("Mostrar Programas Cognitivos");
+        jLabel1.setText("Mostrar usuarios");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 360, 50));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 50));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 50));
 
         jPanel3.setBackground(new java.awt.Color(177, 157, 104));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 370, 50));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 390, 50));
 
-        Tbl_ProgramasCongnitivos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        Tbl_ProgramasCongnitivos.setModel(new javax.swing.table.DefaultTableModel(
+        Tbl_Usuarios.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        Tbl_Usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre", "Descripcion", "Tipo", "Nivel", "Duracion", "No. sesiones", "Costo", "Objetivos", "Version", "Actualizacion", "Creador"
+                "ID", "Nombre", "Apellidos", "Correo", "Telefono", "Direccion", "Usuario", "Preg. Recuperacion", "Resp. Recuperacion", "Rol", "Estatus", "Fecha reg.", "Ultimo acceso"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,14 +128,14 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
         headerRenderer.setFont(new java.awt.Font("Roboto", java.awt.Font.BOLD, 14));
         headerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
-        for (int i = 0; i < Tbl_ProgramasCongnitivos.getColumnModel().getColumnCount(); i++) {
-            Tbl_ProgramasCongnitivos.getColumnModel()
+        for (int i = 0; i < Tbl_Usuarios.getColumnModel().getColumnCount(); i++) {
+            Tbl_Usuarios.getColumnModel()
             .getColumn(i)
             .setHeaderRenderer(headerRenderer);
         }
-        jScrollPane1.setViewportView(Tbl_ProgramasCongnitivos);
+        jScrollPane1.setViewportView(Tbl_Usuarios);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1040, 350));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1110, 350));
 
         Lbl_Volver.setForeground(new java.awt.Color(41, 51, 92));
         Lbl_Volver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,7 +143,7 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
         Lbl_Volver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Lbl_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1080, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 500));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -151,7 +151,7 @@ public class MostrarProgramasCognitivos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lbl_Volver;
-    private javax.swing.JTable Tbl_ProgramasCongnitivos;
+    private javax.swing.JTable Tbl_Usuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

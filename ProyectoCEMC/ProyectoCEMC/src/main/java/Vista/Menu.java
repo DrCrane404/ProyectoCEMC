@@ -812,9 +812,9 @@ public class Menu extends javax.swing.JFrame {
         if (seleccion == null)
             return;
 
-        if ( "Paciente".equals(seleccion)) {
+        if ("Añadir paciente".equals(seleccion)) {
             
-            CrearUsuario v = new CrearUsuario();
+            AnadirPaciente v = new AnadirPaciente();
             v.setVisible(true);
             
         } else if ("Programa cognitivo".equals(seleccion)) {

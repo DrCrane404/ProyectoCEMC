@@ -263,9 +263,12 @@ public class Usuario {
                        + "telefono,"
                        + "direccion,"
                        + "usuario,"
+                       + "pregunta_recuperacion,"
+                       + "respuesta_recuperacion,"
                        + "rol,"
                        + "estatus,"
-                       + "fecha_registro "
+                       + "fecha_registro,"
+                       + "ultimo_acceso "
                        + "FROM usuario");
        ResultSet Res = SQL.executeQuery();
        return Res;

@@ -1,4 +1,5 @@
 package Controlador;
+import Modelo.Usuario;
 import Vista.*;
 import Vista.Login;
 
