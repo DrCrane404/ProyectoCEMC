@@ -245,7 +245,7 @@ public class Asigna_ejecuta {
     //Método para cuando el usuario es admin
     public ResultSet Mostrar_admin() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
-        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta");
+        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta WHERE estatus = 'Activa'");
 
         ResultSet Res = SQL.executeQuery();
         return Res;
@@ -254,7 +254,7 @@ public class Asigna_ejecuta {
     //Método para cuando el usuario es paciente
     public ResultSet Mostrar_paciente (int idusuario) throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
-        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta WHERE pacientes_usuario_idusuario = ?");
+        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta WHERE pacientes_usuario_idusuario = ? AND estatus = 'Activa'");
         SQL.setInt(1, idusuario);
         
         ResultSet Res = SQL.executeQuery();
@@ -264,7 +264,7 @@ public class Asigna_ejecuta {
     //Método para cuando el usuario es entrenador
     public ResultSet Mostrar_entrenador (int idusuario) throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
-        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta WHERE entrenadores_usuario_idusuario = ?");
+        PreparedStatement SQL = CON.prepareStatement("SELECT * FROM asigna_ejecuta WHERE entrenadores_usuario_idusuario = ? AND estatus = 'Activa'");
         SQL.setInt(1, idusuario);
         
         ResultSet Res = SQL.executeQuery();
