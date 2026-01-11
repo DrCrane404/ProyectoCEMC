@@ -342,7 +342,8 @@ public class Usuario {
                         + "estatus,"
                         + "fecha_registro,"
                         + "ultimo_acceso "
-                        + "FROM usuario");
+                        + "FROM usuario "
+                        + "WHERE estatus = 'Activa'");
         ResultSet Res = SQL.executeQuery();
         return Res;
     }
