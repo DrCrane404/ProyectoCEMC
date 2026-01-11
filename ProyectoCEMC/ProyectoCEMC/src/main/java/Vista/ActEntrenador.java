@@ -45,7 +45,7 @@ public class ActEntrenador extends javax.swing.JFrame {
         }
         e.Buscar();
         System.out.println("ID: " + e.getIdusuario());
-System.out.println("Nombre: " + e.getNombre());
+System.out.println("Nombre: " + e.getEspecialidad());
 
         Txt_Especialidad.setText(e.getEspecialidad());
         Txt_Nombre.setText(e.getNombre());

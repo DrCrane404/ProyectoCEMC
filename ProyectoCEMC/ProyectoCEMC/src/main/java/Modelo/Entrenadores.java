@@ -39,13 +39,13 @@ public class Entrenadores extends Usuario {
 
     public void Guardar_entrenador() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
-        PreparedStatement Sen = CON.prepareStatement("INSERT INTO entrenadores VALUES (?, ?)");
+        PreparedStatement Sen = CON
+                .prepareStatement("INSERT INTO entrenadores (especialidad, usuario_idusuario) VALUES (?, ?)");
 
         Sen.setString(1, especialidad);
-        Sen.setInt(2, usuario_idusuario);
+        Sen.setInt(2, idusuario);
 
         Sen.executeUpdate();
-
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Entrenadores extends Usuario {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement SQL = CON.prepareStatement("SELECT * FROM entrenadores WHERE usuario_idusuario = ?");
 
-        SQL.setInt(1, usuario_idusuario);
+        SQL.setInt(1, idusuario);
         ResultSet RS = SQL.executeQuery();
 
         if (RS.next()) {
@@ -78,7 +78,7 @@ public class Entrenadores extends Usuario {
                 .prepareStatement("UPDATE entrenadores SET especialidad = ? WHERE usuario_idusuario = ?");
 
         Sen.setString(1, especialidad);
-        Sen.setInt(2, usuario_idusuario);
+        Sen.setInt(2, idusuario);
 
         Sen.executeUpdate();
     }
@@ -87,7 +87,7 @@ public class Entrenadores extends Usuario {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("DELETE FROM entrenadores WHERE usuario_idusuario = ?");
 
-        Sen.setInt(1, usuario_idusuario);
+        Sen.setInt(1, idusuario);
         Sen.executeUpdate();
     }
 

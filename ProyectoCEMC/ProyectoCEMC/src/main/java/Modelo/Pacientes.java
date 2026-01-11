@@ -140,7 +140,7 @@ public class Pacientes extends Usuario {
     public void Guardar_paciente() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("INSERT INTO pacientes VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)");
-        Sen.setInt(1, usuario_idusuario);
+        Sen.setInt(1, idusuario);
         Sen.setInt(2, edad);
         Sen.setString(3, genero);
         Sen.setString(4, escolaridad);
@@ -178,7 +178,7 @@ public class Pacientes extends Usuario {
     public boolean Buscar_paciente() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement SQL = CON.prepareStatement("SELECT * FROM pacientes WHERE usuario_idusuario = ?");
-        SQL.setInt(1, usuario_idusuario);
+        SQL.setInt(1, idusuario);
         ResultSet RS = SQL.executeQuery();
         if (RS.next()) {
             usuario_idusuario = RS.getInt("usuario_idusuario");
@@ -210,14 +210,14 @@ public class Pacientes extends Usuario {
         Sen.setString(6, alergias);
         Sen.setString(7, observaciones);
         Sen.setString(8, estado_tratamiento);
-        Sen.setInt(9, usuario_idusuario);
+        Sen.setInt(9, idusuario);
         Sen.executeUpdate();
     }
 
     public void Borrar_paciente() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement("DELETE FROM pacientes WHERE usuario_idusuario = ?");
-        Sen.setInt(1, usuario_idusuario);
+        Sen.setInt(1, idusuario);
         Sen.executeUpdate();
     }
 
