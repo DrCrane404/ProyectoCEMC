@@ -857,10 +857,12 @@ public class Menu extends javax.swing.JFrame {
         } else if ("Asignar programa".equals(seleccion)) {
             AsignarPrograma v = new AsignarPrograma(usuario);
             v.setVisible(true);
-        } else if ("Crear Paciente".equals(seleccion)) {
-            CrearPaciente v = new CrearPaciente(usuario);
-        } else if ("Crear entrenaodr".equals(seleccion)) {
-            CrearEntrenador v = new CrearEntrenador(usuario);
+        } else if ("Paciente".equals(seleccion)) {
+            CrearPaciente v = new CrearPaciente();
+            v.setVisible(true);
+        } else if ("Entrenador".equals(seleccion)) {
+            CrearEntrenador v = new CrearEntrenador();
+            v.setVisible(true);
         }
         Dlg_Crear.dispose();
     }

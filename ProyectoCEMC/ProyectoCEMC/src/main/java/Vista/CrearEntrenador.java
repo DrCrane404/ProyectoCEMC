@@ -21,8 +21,8 @@ public class CrearEntrenador extends javax.swing.JFrame {
     /**
      * Creates new form CrearEntrenador
      */
-    public CrearEntrenador(Usuario usuario) {
-        this.usuario= usuario;
+    public CrearEntrenador() {
+        
         initComponents();
         Btn_Guardar.setFocusPainted(false);
         Btn_Guardar.setBorderPainted(false);
@@ -596,14 +596,15 @@ public class CrearEntrenador extends javax.swing.JFrame {
                 String RespRecuperacion = Txt_RespRecuperacion.getText().trim();
                 String Telefono = Txt_Telefono.getText().trim();
                 String Usuario = Txt_Usuario.getText().trim();
-                boolean encontrado = false;
+                String genero = Txt_Genero.getText().trim().toLowerCase();
+                boolean encontrado = genero.equals("hombre") || genero.equals("mujer");
                 
-                if (encontrado == false){
+                if (!encontrado){
                     JOptionPane.showMessageDialog(this,"Ingrese un genero valido");
                 } else {
                     //Instanciar usuario
-                    Usuario usuario = new Usuario(Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
-                    Entrenadores entrenador = new Entrenadores(Especialidad,Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Paciente");
+                    Usuario usuario = new Usuario(Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Entrenador");
+                    Entrenadores entrenador = new Entrenadores(Especialidad,Nombre,ApePaterno,ApeMaterno,Correo,Telefono,Direccion,Usuario,Contrasena,PregRecuperacion,RespRecuperacion,"Entrenador");
                     // Guardar usuario
                     int aux = usuario.Guardar();
                     //Añadir claves foraneas

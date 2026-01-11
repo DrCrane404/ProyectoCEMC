@@ -34,6 +34,9 @@ public class AsignarPrograma extends javax.swing.JFrame {
             cargarPacientes();
             cargarProgramas();
         } else {
+            setTitle("Actualizar Asignación");
+            jLabel1.setText("Actualizar Asignación de Programa");
+            Btn_Asignar.setText("ACTUALIZAR ASIGNACIÓN");
             cargarPaciente(idPaciente);
             cargarProgramasPaciente(idPaciente, idEntrenador);
         }

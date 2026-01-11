@@ -46,7 +46,7 @@ public class Entrenadores extends Usuario {
         
     }
     
-    public boolean Buscar() throws SQLException {
+    public boolean Buscar_entrenador() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental","root","");
         PreparedStatement SQL = CON.prepareStatement("SELECT * FROM entrenadores WHERE usuario_idusuario = ?");
         
