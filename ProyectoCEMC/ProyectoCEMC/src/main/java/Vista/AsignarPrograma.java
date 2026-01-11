@@ -65,13 +65,13 @@ public class AsignarPrograma extends javax.swing.JFrame {
 
     private void cargarPacientes() {
         Pacientes modeloPacientes = new Pacientes();
-            try {
-                ResultSet rs = modeloPacientes.Mostrar_entrenador(this.usuario.getIdusuario());
-                Cmb_Pacientes.removeAllItems();
-                pacienteIds.clear();
+        try {
+            ResultSet rs = modeloPacientes.Mostrar_entrenador(this.usuario.getIdusuario());
+            Cmb_Pacientes.removeAllItems();
+            pacienteIds.clear();
 
-                Cmb_Pacientes.addItem("Seleccionar Paciente...");
-                pacienteIds.add(-1); // Dummy ID for index 0
+            Cmb_Pacientes.addItem("Seleccionar Paciente...");
+            pacienteIds.add(-1); // Dummy ID for index 0
 
             while (rs.next()) {
                 Integer id = rs.getInt("idusuario");
@@ -108,16 +108,18 @@ public class AsignarPrograma extends javax.swing.JFrame {
     private void cargarPaciente(Integer idPaciente) {
         Pacientes modeloPacientes = new Pacientes();
         try {
-            modeloPacientes.setUsuario_idusuario(idPaciente);
-            modeloPacientes.Buscar_paciente();
-            ResultSet rs = modeloPacientes.Mostrar_admin();
-            Cmb_Pacientes.removeAllItems();
-            pacienteIds.clear();
+            modeloPacientes.setIdusuario(idPaciente);
+            if (modeloPacientes.Buscar()) {
+                Cmb_Pacientes.removeAllItems();
+                pacienteIds.clear();
 
-            Cmb_Pacientes.addItem(rs.getString("nombre") + " " + rs.getString("ap_paterno"));
-            pacienteIds.add(rs.getInt("idusuario"));
+                Cmb_Pacientes.addItem(modeloPacientes.getNombre() + " " + modeloPacientes.getAp_paterno());
+                pacienteIds.add(modeloPacientes.getIdusuario());
+            } else {
+                JOptionPane.showMessageDialog(this, "Paciente no encontrado.");
+            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar pacientes: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al cargar paciente: " + ex.getMessage());
         }
     }
 
