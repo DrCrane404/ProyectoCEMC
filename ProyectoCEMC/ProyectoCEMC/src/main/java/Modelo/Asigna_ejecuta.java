@@ -194,6 +194,21 @@ public class Asigna_ejecuta {
         }
     }
 
+    public ResultSet Buscar_paciente_entrenador() throws SQLException {
+        Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
+        PreparedStatement SQL = CON.prepareStatement(
+                "SELECT idprogramas_cognitivos,"
+                        + "nombre,"
+                        + "version"
+                        + "FROM asigna_ejecuta inner join programas_cognitivos on asigna_ejecuta.programas_cognitivos_idprogramas_cognitivos = programas_cognitivos.id_programa where pacientes_usuario_idusuario = ? AND entrenadores_usuario_idusuario = ?");
+
+        SQL.setInt(1, pacientes_usuario_idusuario);
+        SQL.setInt(2, entrenadores_usuario_idusuario);
+        ResultSet RS = SQL.executeQuery();
+
+        return RS;
+    }
+
     public void Actualizar() throws SQLException {
         Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
         PreparedStatement Sen = CON.prepareStatement(
