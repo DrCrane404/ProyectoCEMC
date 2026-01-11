@@ -188,7 +188,11 @@ public class Asigna_ejecuta {
             entrenadores_usuario_idusuario = RS.getInt("entrenadores_usuario_idusuario");
             monto_pago = RS.getDouble("monto_pago");
 
-            return true;
+            if(estatus.equals("Eliminada")) {
+                return false;
+            }else{
+                return true;
+            }
         } else {
             return false;
         }
