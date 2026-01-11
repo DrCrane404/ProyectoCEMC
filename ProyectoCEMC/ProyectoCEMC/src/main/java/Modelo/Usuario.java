@@ -284,7 +284,12 @@ public class Usuario {
             fecha_registro = RS.getDate("fecha_registro");
             ultimo_acceso = RS.getTimestamp("ultimo_acceso").toLocalDateTime();
             intentos_fallidos = RS.getInt("intentos_fallidos");
-            return true;
+            
+            if(estatus.equals("Eliminada")) {
+                return false;
+            }else{
+                return true;
+            }
         } else {
             return false;
         }
