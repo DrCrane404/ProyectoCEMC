@@ -15,8 +15,8 @@ public class CrearPaciente extends javax.swing.JFrame {
     Color azul = new Color(41, 51, 92);
     Color hover = new Color(49, 69, 168);
     
-    public CrearPaciente(Usuario usuario) {
-        this.usuario = usuario;
+    public CrearPaciente() {
+        
         initComponents();
         Btn_Guardar.setFocusPainted(false);
         Btn_Guardar.setBorderPainted(false);

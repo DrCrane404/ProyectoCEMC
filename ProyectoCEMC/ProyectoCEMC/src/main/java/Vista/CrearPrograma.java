@@ -1,5 +1,4 @@
 package Vista;
-
 import Modelo.Programa;
 import Modelo.Usuario;
 import java.sql.Date;
