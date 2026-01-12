@@ -225,7 +225,7 @@ public class Pacientes extends Usuario {
         ResultSet RS = SQL.executeQuery();
         
         if (RS.next()) {
-            usuario_idusuario = RS.getInt("usuario_idusuario");
+            idusuario = RS.getInt("usuario_idusuario");
             edad = RS.getInt("edad");
             genero = RS.getString("genero");
             escolaridad = RS.getString("escolaridad");
@@ -321,7 +321,7 @@ public class Pacientes extends Usuario {
                         "fecha_ingreso " +
                         "FROM usuario JOIN asigna_ejecuta " +
                         "ON (usuario.idusuario = asigna_ejecuta.pacientes_usuario_idusuario) " +
-                        "JOIN pacientes ON (usuario.idusuario = pacientes.usuario_idusuario)" +
+                        "JOIN pacientes ON (usuario.idusuario = pacientes.usuario_idusuario) " +
                         "WHERE asigna_ejecuta.entrenadores_usuario_idusuario = ?");
         SQL.setInt(1, idEntrenador);
         ResultSet Res = SQL.executeQuery();
