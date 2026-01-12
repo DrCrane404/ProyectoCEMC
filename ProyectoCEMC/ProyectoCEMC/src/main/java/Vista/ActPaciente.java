@@ -4,9 +4,7 @@
  */
 package Vista;
 
-import Modelo.Genero;
-import Modelo.Pacientes;
-import Modelo.Usuario;
+import Modelo.*;
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -88,7 +86,7 @@ public class ActPaciente extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         Btn_GuardarTratamientos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tbl_Tratamientos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -199,15 +197,15 @@ public class ActPaciente extends javax.swing.JFrame {
         Btn_GuardarTratamientos.addActionListener(this::Btn_GuardarTratamientosActionPerformed);
         jPanel9.add(Btn_GuardarTratamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 110, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
-            new String [] { "ID", "Medicacion", "Descripción" }
-        ) {
-            public boolean isCellEditable(int row, int column) {
-                return column != 0; // ID no editable
+        Tbl_Tratamientos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tratamientos", "Medicación", "Descripción"
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(Tbl_Tratamientos);
 
         jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 350, 190));
 
@@ -820,11 +818,8 @@ public class ActPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_TratamientosMouseExited
 
     private void Btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_TratamientosActionPerformed
-        DialogModTrata.pack();
-        DialogModTrata.setLocationRelativeTo(this);
-        DialogModTrata.setVisible(true);
         try {
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) Tbl_Tratamientos.getModel();
             modelo.setRowCount(0);
 
             Connection con = DriverManager.getConnection(
@@ -832,26 +827,29 @@ public class ActPaciente extends javax.swing.JFrame {
             );
 
             PreparedStatement ps = con.prepareStatement(
-                "SELECT t.idtratamiento, t.medicacion, t.descripcion " +
-                "FROM tratamientos t " +
-                "JOIN paciente_tratamiento pt ON t.idtratamiento = pt.idtratamiento " +
-                "WHERE pt.id_paciente = ?"
+                "SELECT idtratamientos, medicacion, descripcion " +
+                "FROM tratamientos " +
+                "WHERE pacientes_usuario_idusuario = ?"
             );
 
             ps.setInt(1, p.getIdusuario());
-
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 modelo.addRow(new Object[]{
-                    rs.getInt("idtratamiento"),
+                    rs.getInt("idtratamientos"),  
                     rs.getString("medicacion"),
                     rs.getString("descripcion")
                 });
-        }
+            }
+
+            DialogModTrata.pack();
+            DialogModTrata.setLocationRelativeTo(this);
+            DialogModTrata.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al cargar tratamientos: " + e.getMessage());
         }
     }//GEN-LAST:event_Btn_TratamientosActionPerformed
 
@@ -931,35 +929,87 @@ public class ActPaciente extends javax.swing.JFrame {
     
     private void Btn_GuardarTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarTratamientosActionPerformed
         try {
+            int fila = Tbl_Tratamientos.getSelectedRow();
+
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(this, "Selecciona un tratamiento para guardar cambios");
+                return;
+            }
+
+            int idTratamiento = Integer.parseInt(Tbl_Tratamientos.getValueAt(fila, 0).toString());
+            String medicacion = Tbl_Tratamientos.getValueAt(fila, 1).toString();
+            String descripcion = Tbl_Tratamientos.getValueAt(fila, 2).toString();
+
             Connection con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/centro_mental", "root", ""
             );
 
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            PreparedStatement ps = con.prepareStatement(
+                "UPDATE tratamientos SET medicacion = ?, descripcion = ? " +
+                "WHERE idtratamientos = ? AND pacientes_usuario_idusuario = ?"
+            );
 
-            for (int i = 0; i < modelo.getRowCount(); i++) {
-                int idTratamiento = (int) modelo.getValueAt(i, 0);
-                String medicacion = modelo.getValueAt(i, 1).toString();
-                String descripcion = modelo.getValueAt(i, 2).toString();
+            ps.setString(1, medicacion);
+            ps.setString(2, descripcion);
+            ps.setInt(3, idTratamiento);
+            ps.setInt(4, p.getIdusuario());
 
-                PreparedStatement ps = con.prepareStatement(
-                    "UPDATE tratamientos SET medicacion=?, descripcion=? WHERE idtratamiento=?"
+            int filas = ps.executeUpdate();
+
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(this, "Tratamiento actualizado correctamente");
+
+                DefaultTableModel modelo = (DefaultTableModel) Tbl_Tratamientos.getModel();
+                modelo.setRowCount(0);
+
+                PreparedStatement ps2 = con.prepareStatement(
+                    "SELECT idtratamientos, medicacion, descripcion " +
+                    "FROM tratamientos " +
+                    "WHERE pacientes_usuario_idusuario = ?"
                 );
 
-                ps.setString(1, medicacion);
-                ps.setString(2, descripcion);
-                ps.setInt(3, idTratamiento);
-                ps.executeUpdate();
-            }
+                ps2.setInt(1, p.getIdusuario());
+                ResultSet rs = ps2.executeQuery();
 
-            JOptionPane.showMessageDialog(this, "Tratamientos actualizados correctamente");
+                while (rs.next()) {
+                    modelo.addRow(new Object[]{
+                        rs.getInt("idtratamientos"),
+                        rs.getString("medicacion"),
+                        rs.getString("descripcion")
+                    });
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se realizaron cambios");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al guardar los tratamientos");
-        }DialogModTrata.dispose();
+            JOptionPane.showMessageDialog(this, "Error al guardar cambios: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_Btn_GuardarTratamientosActionPerformed
 
+    private void cargarTabla(Pacientes paciente) {
+        DefaultTableModel model = (DefaultTableModel) Tbl_Tratamientos.getModel();
+        model.setRowCount(0);
+        
+        Tratamientos tratamientos = new Tratamientos();
+        tratamientos.setPacientes_usuario_idusuario(paciente.getUsuario_idusuario());
+        
+        try {
+            ResultSet rs = tratamientos.Mostrar_paciente();
+            while (rs.next()) {
+                int idtratamientos = rs.getInt("idtratamientos");
+                String medicacion = rs.getString("medicacion");
+                String descripcion = rs.getString("descripcion");
+
+                model.addRow(new Object[] { idtratamientos, medicacion, descripcion });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar pacientes: " + ex.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Actualizar;
     private javax.swing.JButton Btn_GuardarTratamientos;
@@ -967,6 +1017,7 @@ public class ActPaciente extends javax.swing.JFrame {
     private javax.swing.JDialog DialogModTrata;
     private javax.swing.JLabel Lbl_Volver;
     private javax.swing.JLabel Lbl_VolverTratamientos;
+    private javax.swing.JTable Tbl_Tratamientos;
     private javax.swing.JTextField Txt_Alergias;
     private javax.swing.JTextField Txt_AntecedentesMedicos;
     private javax.swing.JTextField Txt_ApeMaterno;
@@ -1004,6 +1055,5 @@ public class ActPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
