@@ -894,8 +894,27 @@ public class Menu extends javax.swing.JFrame {
                 v.setVisible(true);
             }
         } else if ("Asignar programa".equals(seleccion)) {
-            AsignarPrograma v = new AsignarPrograma(usuario);
-            v.setVisible(true);
+            if (usuario.getRol().equalsIgnoreCase("Administrador")) {
+                String idStr = javax.swing.JOptionPane
+                        .showInputDialog("Ingrese ID del entrenador asociado:");
+                if (idStr != null && !idStr.isEmpty()) {
+                    try {
+                        int id = Integer.parseInt(idStr);
+                        Entrenadores entrenador = new Entrenadores();
+                        entrenador.setUsuario_idusuario(id);
+                        entrenador.Buscar();
+                        AsignarPrograma v = new AsignarPrograma(entrenador);
+                        v.setVisible(true);
+                    } catch (NumberFormatException e) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
+                    } catch (SQLException ex) {
+                        System.getLogger(Menu.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                    }
+                }
+            } else {
+                AsignarPrograma v = new AsignarPrograma(usuario);
+                v.setVisible(true);
+            }
         } else if ("Paciente".equals(seleccion)) {
             CrearPaciente v = new CrearPaciente();
             v.setVisible(true);
