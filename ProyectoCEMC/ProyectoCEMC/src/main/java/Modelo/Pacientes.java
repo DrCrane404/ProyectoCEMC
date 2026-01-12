@@ -242,7 +242,7 @@ public class Pacientes extends Usuario {
         }
     }
 
-    public boolean Actualizar_paciente() throws SQLException {
+    public boolean Actualizar_paciente(){
         try {
             Connection CON = DriverManager.getConnection("jdbc:mysql://localhost:3306/centro_mental", "root", "");
             PreparedStatement Sen = CON.prepareStatement(
