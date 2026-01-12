@@ -27,6 +27,19 @@ public class Pacientes extends Usuario {
     public Pacientes() {
     }
 
+    public Pacientes(int edad, String genero, String escolaridad, String ocupacion, String antecedentes_medicos, String alergias, String observaciones, String estado_tratamiento, int entrenadores_usuario_idusuario) {
+        this.edad = edad;
+        this.genero = genero;
+        this.escolaridad = escolaridad;
+        this.ocupacion = ocupacion;
+        this.antecedentes_medicos = antecedentes_medicos;
+        this.alergias = alergias;
+        this.observaciones = observaciones;
+        this.estado_tratamiento = estado_tratamiento;
+        this.fecha_ingreso = Date.valueOf(LocalDate.now());
+        this.entrenadores_usuario_idusuario = entrenadores_usuario_idusuario;
+    }
+
     public Pacientes(int edad, String genero, String escolaridad, String ocupacion, String antecedentes_medicos,
             String alergias, String observaciones, String estado_tratamiento, int entrenadores_usuario_idusuario,
             String nombre, String ap_paterno, String ap_materno, String correo, String telefono, String direccion,
